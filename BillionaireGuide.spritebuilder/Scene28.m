@@ -19,6 +19,8 @@
 
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
     
+    [[OALSimpleAudio sharedInstance] stopBg];
+    
     [(AppController *)[[UIApplication sharedApplication] delegate] window].rootViewController = [[RootViewController alloc] init];
 }
 

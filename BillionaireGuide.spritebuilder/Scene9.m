@@ -12,6 +12,8 @@
 
 - (void)didLoadFromCCB {
     
+    [[OALSimpleAudio sharedInstance] playBg:@"b2.mp3" loop:YES];
+    
     [self performSelector:@selector(loadScene10) withObject:nil afterDelay:2.4f];
 }
 

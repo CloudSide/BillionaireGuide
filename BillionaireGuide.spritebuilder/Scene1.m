@@ -7,6 +7,7 @@
 //
 
 #import "Scene1.h"
+#import "OALSimpleAudio.h"
 
 @implementation Scene1
 
@@ -43,6 +44,8 @@
     
     CCScene *gameplayScene = [CCBReader loadAsScene:@"Scene4"];
     [[CCDirector  sharedDirector] replaceScene:gameplayScene withTransition:[CCTransition transitionCrossFadeWithDuration:0.8]];
+    
+    [[OALSimpleAudio sharedInstance] playBg:@"b1.mp3" loop:YES];
 }
 
 @end

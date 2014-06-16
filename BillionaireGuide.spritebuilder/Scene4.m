@@ -12,6 +12,8 @@
 
 - (void)play {
     
+    [[OALSimpleAudio sharedInstance] playEffect:@"button_down.mp3"];
+    
     __autoreleasing CCScene *gameplayScene = [CCBReader loadAsScene:@"Scene5"];
     [[CCDirector  sharedDirector] replaceScene:gameplayScene withTransition:[CCTransition transitionFadeWithDuration:.8f]];
 }

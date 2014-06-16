@@ -17,6 +17,8 @@
 
 - (void)ok {
     
+    [[OALSimpleAudio sharedInstance] playEffect:@"button_down.mp3"];
+    
     CCLOG(@"%@", _nikeName.textField.text);
     
     if (_nikeName.textField.text.length < 2) {
@@ -47,6 +49,8 @@
     if(buttonIndex == 0) {
         
         [G setNikename:_nikeName.textField.text];
+        
+        [[OALSimpleAudio sharedInstance] stopBg];
         
         __autoreleasing CCScene *gameplayScene = [CCBReader loadAsScene:@"Scene9"];
         [[CCDirector  sharedDirector] replaceScene:gameplayScene withTransition:[CCTransition transitionFadeWithDuration:.6f]];

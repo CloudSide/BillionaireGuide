@@ -33,6 +33,8 @@
 }
 
 - (void)ok {
+    
+    [[OALSimpleAudio sharedInstance] playEffect:@"button_down.mp3"];
 
     __autoreleasing CCScene *gameplayScene = [CCBReader loadAsScene:@"Scene8"];
     [[CCDirector  sharedDirector] replaceScene:gameplayScene withTransition:[CCTransition transitionFadeWithDuration:.6f]];
@@ -41,6 +43,8 @@
 }
 
 - (void)cancel {
+    
+    [[OALSimpleAudio sharedInstance] playEffect:@"button_down.mp3"];
 
     __autoreleasing CCScene *gameplayScene = [CCBReader loadAsScene:@"Scene6"];
     [[CCDirector  sharedDirector] replaceScene:gameplayScene withTransition:[CCTransition transitionFadeWithDuration:.6f]];
