@@ -609,6 +609,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Mitangmei Beijing Electronics Co., Ltd. (98Q3CXU744)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Source/Prefix.pch;
@@ -628,7 +629,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = BillionaireGuide;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "CD03CCA0-105A-4855-8B10-3E6EC67ACFBB";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
