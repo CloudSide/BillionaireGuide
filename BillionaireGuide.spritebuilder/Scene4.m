@@ -18,4 +18,20 @@
     [[CCDirector  sharedDirector] replaceScene:gameplayScene withTransition:[CCTransition transitionFadeWithDuration:.8f]];
 }
 
+- (void)regAndLogin {
+    
+    //////////////////////////////////////////////////
+    UIAlertView *dialog = [[UIAlertView alloc] init];
+    [dialog setDelegate:self];
+    [dialog setTitle:@"提示"];
+    [dialog setMessage:@"益飞处理按钮点击后的事件"];
+    [dialog addButtonWithTitle:@"好的"];
+    [dialog show];
+    //////////////////////////////////////////////////
+}
+
+- (void)selectServerName {
+    
+}
+
 @end

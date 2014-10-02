@@ -16,4 +16,10 @@
 + (NSString *)nikename;
 + (void)setNikename:(NSString *)n;
 
++ (NSUInteger)serverIndex;
++ (void)setServerIndex:(NSUInteger)idx;
+
++ (NSArray *)servers;
++ (void)setServers:(NSArray *)sers;
+
 @end
