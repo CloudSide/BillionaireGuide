@@ -8,6 +8,6 @@
 
 #import "CCNode.h"
 
-@interface Scene4 : CCNode
+@interface Scene4 : CCNode <CCTableViewDataSource>
 
 @end
