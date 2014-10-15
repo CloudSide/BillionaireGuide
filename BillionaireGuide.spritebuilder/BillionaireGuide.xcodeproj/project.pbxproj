@@ -34,6 +34,7 @@
 		32CCA7EE194421B90072A42F /* Scene19.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CCA7ED194421B90072A42F /* Scene19.m */; };
 		32CCA7F1194421C80072A42F /* Scene20.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CCA7F0194421C80072A42F /* Scene20.m */; };
 		32CCA7F4194421D40072A42F /* Scene21.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CCA7F3194421D40072A42F /* Scene21.m */; };
+		32E7170519EEC03100A1AB64 /* html in Resources */ = {isa = PBXBuildFile; fileRef = 32E7170419EEC03100A1AB64 /* html */; };
 		32FA445A1928EB7B00D5ED7F /* Scene1.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA44591928EB7B00D5ED7F /* Scene1.m */; };
 		3F89FBA0195D394000EFBAE9 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F89FB9F195D394000EFBAE9 /* GLKit.framework */; };
 		3F9E8BC8194EB8DE0043E308 /* button_down.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3F9E8BC7194EB8DE0043E308 /* button_down.mp3 */; };
@@ -141,6 +142,7 @@
 		32CCA7F0194421C80072A42F /* Scene20.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene20.m; sourceTree = "<group>"; };
 		32CCA7F2194421D40072A42F /* Scene21.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene21.h; sourceTree = "<group>"; };
 		32CCA7F3194421D40072A42F /* Scene21.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene21.m; sourceTree = "<group>"; };
+		32E7170419EEC03100A1AB64 /* html */ = {isa = PBXFileReference; lastKnownFileType = folder; path = html; sourceTree = "<group>"; };
 		32FA44581928EB7B00D5ED7F /* Scene1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene1.h; sourceTree = "<group>"; };
 		32FA44591928EB7B00D5ED7F /* Scene1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene1.m; sourceTree = "<group>"; };
 		3F89FB9F195D394000EFBAE9 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
@@ -215,6 +217,7 @@
 		B737893C1807616C0076A88C /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				32E7170419EEC03100A1AB64 /* html */,
 				3235DBC3192E44E300FB5BAF /* G.h */,
 				3235DBC4192E44E300FB5BAF /* G.m */,
 				B737893D1807617C0076A88C /* AppDelegate.h */,
@@ -455,6 +458,7 @@
 				B737893B180761570076A88C /* Published-iOS in Resources */,
 				3FF32D7F194EB3BC00870753 /* b1.mp3 in Resources */,
 				3F9E8BC8194EB8DE0043E308 /* button_down.mp3 in Resources */,
+				32E7170519EEC03100A1AB64 /* html in Resources */,
 				3FF32D80194EB3BC00870753 /* b2.mp3 in Resources */,
 				B71F591A188484E7003F4D28 /* Settings@2x.png in Resources */,
 				B7378976180762440076A88C /* Default-Landscape~ipad.png in Resources */,

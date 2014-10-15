@@ -1,0 +1,259 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta id="viewport" name="viewport" content="width=device-width; initial-scale=1.0; minimum-scale=1.0; maximum-scale=1.0">
+    <meta name="viewport" content="initial-scale=1.0; minimum-scale=1.0; maximum-scale=1.0; width=device-width; user-scalable=no;" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.lazyload.min.js"></script>
+    <script type="text/javascript" src="js/jquery.scrollstop.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css" media="screen" />
+    
+    <script type="text/javascript">
+		        
+		var cate_data;
+        
+        function resetAHover() {
+            
+            $('a').css("color", "#21759B");
+        }
+		
+		function selected(cate_id, name) {
+            
+            $('a').each(
+                function(index) {
+                    var tmp = $(this).text();
+                    if (tmp == name ) {
+                            
+                        $(this).css("color", "#02A3FB");
+                    } else {
+                        
+                        $(this).css("color", "#21759B");
+                    }
+                });
+			run_command('selected', 'cate_id=' + encodeURIComponent(cate_id) + '&name=' + encodeURIComponent(name));
+		}
+        
+        function recommend(name) {
+            $('a').each(
+                function(index) {
+                    var tmp = $(this).text();
+                    if (tmp == name ) {
+                        
+                        $(this).css("color", "#02A3FB");
+                    } else {
+                        
+                        $(this).css("color", "#21759B");
+                    }
+                });
+            run_command('recommend', 'name=随便看看');
+        }
+		
+		function loadCate() {
+		
+			run_command('loadCate', 'do=1');
+		}
+		
+		function load_fail(msg) {
+			
+			$("#more_loading").text(msg);
+		}
+		
+		function _load_success() {
+			
+			$("#items").html("");
+			
+			var html =              "\n" +
+									"<li>" +
+									"<a href=\"javascript:recommend('随便看看');\">" +
+                   					"<img width=\"86px\" src=\"images/cate_guess_you_like.png\" /><br>" +
+                    				"<span>随便看看</span>" +
+                					"</a>" +  
+									"</li>" + 
+                                    "\n";
+			
+			 for (i=0; i<cate_data.length; i++) {
+                   
+				var cate_icon = "cate_other.png";
+				   
+				if (cate_data[i]["id"] == 1 || cate_data[i]["id"] == 2 || cate_data[i]["id"] == 3 || cate_data[i]["id"] == 4 || cate_data[i]["id"] == 5 || cate_data[i]["id"] == 20 || cate_data[i]["id"] == 23) {
+
+					 cate_icon = "cate_" + cate_data[i]["id"] + ".png";
+				} 
+				   
+				//alert(cate_data[i]["id"]);   
+                html += 			"\n" +
+									"<li>" +
+									"<a href=\"javascript:selected('" + cate_data[i]["id"]  + "', '" + cate_data[i]["name"]  + "');\">" +
+                   					"<img width=\"86px\" src=\"images/" + cate_icon + "\" /><br>" +
+                    				"<span>" + cate_data[i]["name"] + "</span>" +
+                					"</a>" +  
+									"</li>"; 
+            }
+			
+			$("#items").html(html);
+			$('a').css("color", "#21759B");
+
+		}
+		
+		function load_success(data) {
+	
+			cate_data = data;	
+			$("#more_loading").text(" ");
+			setTimeout("_load_success()", 0);
+		}
+		
+		$(document).ready(function() {
+		                              
+            document.documentElement.style.webkitUserSelect = 'none';              
+            loadCate();
+		});
+	
+	</script>
+
+    
+    <style type="text/css">
+    
+    
+    	body {
+    		
+    		font:14px helvetica,verdana,san-serif;
+    		-webkit-text-size-adjust:none;
+    		overflow-x:hidden;
+    		background: rgb(240, 240, 240);
+    	}
+    	
+		body,dl,dd,form,p,ul,li,div {
+			
+			margin:0;
+			padding:0;
+		}
+	
+		table {
+			
+			border-collapse:collapse;
+			border-spacing:0;
+		}
+		
+		a { 
+			text-decoration:none;
+			color:#4e5980;
+			cursor:pointer;
+		}
+		
+		a:hover {
+			
+			text-decoration:none;
+		}
+		
+		li {
+			
+			list-style:none;
+		}
+		
+		fieldset, img {
+			
+			border: 0;
+		}
+		
+		body {
+    
+    		background-color: #F2F2F2;
+    		background-image: url("images/bg-v3.png");
+    		color: #2A2A2A;
+		}
+		
+		.white_background {
+			
+			background: white;
+		}
+    
+    	.clearfix:after {
+    		
+    		content:'';
+    		display:block;
+    		height:0;
+    		clear:both;
+    	}
+    	
+		.clearfix {
+			
+			zoom:1;
+		}
+    
+    	.main_content {
+    	
+    		width: auto;
+    		height: auto;
+            /* padding-top: 6px; */
+    		/* border: solid 1px red; */
+    	}
+    	
+    	.main_content ul {
+    	
+    		width: 640px;
+    		height: auto;
+    		/*border: solid 1px blue;*/
+    		float: auto;
+            margin-top: 100px;
+            margin-left: auto;
+            margin-right: auto;
+    	}
+    	
+    	.main_content li {
+    	
+    		float: left;
+    		/*width: 152px;*/
+    		width: 212px;
+    		/*padding: 5px 0;*/
+    		text-align: center;
+    		/*background: white;*/
+    		/*border: solid 1px rgb(220, 220, 220);*/
+    		padding: 12px 0;
+    		/*
+    		border-radius:4px;
+			-moz-border-radius:4px;
+			-webkit-border-radius:4px;
+			*/
+
+    	}
+		
+		#more_loading {
+            
+            width: 640px;
+            margin: 4px;
+    		height: 50px;
+            padding-top: 30px;
+            text-align: center;
+            color: rgb(150, 150, 150);
+            text-shadow:rgba(255, 255, 255, 0.496094) 0 1px 0;
+            font-size: 16px;
+            /*border: solid 1px red;*/
+            margin: 0 auto;
+        }
+    
+    </style>
+
+   
+    
+</head>
+<body>
+    <a href="#" id="empty_a" style="display:none"></a>
+    <div class="main_content clearfix">
+    	<ul id="items">
+        
+            
+        </ul>  	
+    </div> 
+    
+    <div class="clearfix height_5"></div>
+    
+    <div id="more_loading">正在加载...</div>
+    
+</body>
+</html>       

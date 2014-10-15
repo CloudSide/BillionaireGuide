@@ -1,0 +1,463 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta id="viewport" name="viewport" content="width=device-width; initial-scale=1.0; minimum-scale=1.0; maximum-scale=1.0">
+    <meta name="viewport" content="initial-scale=1.0; minimum-scale=1.0; maximum-scale=1.0; width=device-width; user-scalable=no;" />
+  
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">  
+    
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.lazyload.min.js"></script>
+    <script type="text/javascript" src="js/jquery.scrollstop.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css" media="screen" />
+    
+    <script type="text/javascript">
+		        
+		var cate_data;
+        
+        function resetAHover() {
+            
+            /*$('a').css("color", "#21759B");*/
+        }
+		
+		function selected(cate_id, name) {
+            
+            /*
+            $('a').each(
+                function(index) {
+                    var tmp = $(this).text();
+                    if (tmp == name ) {
+                            
+                        $(this).css("color", "#02A3FB");
+                    } else {
+                        
+                        $(this).css("color", "#21759B");
+                    }
+                });
+             */
+                
+			run_command('selected', 'cate_id=' + encodeURIComponent(cate_id) + '&name=' + encodeURIComponent(name));
+		}
+        
+        function recommend(name) {
+            /*
+            $('a').each(
+                function(index) {
+                    var tmp = $(this).text();
+                    if (tmp == name ) {
+                        
+                        $(this).css("color", "#02A3FB");
+                    } else {
+                        
+                        $(this).css("color", "#21759B");
+                    }
+                });
+             */
+            run_command('recommend', 'name=随便看看');
+        }
+		
+		function loadCate() {
+		
+			run_command('loadCate', 'do=1');
+		}
+		
+		function load_fail(msg) {
+			
+			$("#more_loading").text(msg);
+		}
+		
+		function _load_success() {
+			
+			 $("#main_content_area").html("");
+			
+             var html = "";
+			
+			 for (i=0; i<cate_data.length; i++) {
+            
+                var sub_html = "";
+                
+                var subitems = cate_data[i]["subitems"];
+            
+                for (j=0; j<subitems.length; j++) {
+                    
+                    sub_html +=  "<li class=\"li_link\">" +
+                    "<a href=\"javascript:selected('" + subitems[j]["id"]  + "', '" + subitems[j]["name"]  + "');\">" +
+                    subitems[j]["name"] +
+                    "</a>" +
+                    "</li>";
+            
+                }
+            
+            html += "<div class=\"main_content  clearfix\">" +
+                    "<div class=\"content_inner clearfix\">" +
+                    "<div class=\"content_title\"><a href=\"javascript:selected('" + cate_data[i]["id"]  + "', '" + cate_data[i]["name"]  + "');\" class=\"icon_cate_" + cate_data[i]["id"] + "\"><span class=\"content_title_text\">" + cate_data[i]["name"] + "</span></a></div>" +
+                    "<ul id=\"items\" class=\"clearfix\">" +
+                    sub_html +
+                    "</ul></div></div>";
+            }
+			
+			$("#main_content_area").html(html);
+            
+			//$('a').css("color", "#21759B");
+
+		}
+		
+		function load_success(data) {
+	
+			cate_data = data;	
+			$("#more_loading").text(" ");
+			setTimeout("_load_success()", 0);
+		}
+		
+		$(document).ready(function() {
+		                              
+            document.documentElement.style.webkitUserSelect = 'none';              
+            loadCate();
+		});
+	
+	</script>
+
+    
+    <style type="text/css">
+    
+    
+	body {
+		
+		font:14px helvetica,verdana,san-serif;
+		-webkit-text-size-adjust:none;
+		overflow-x:hidden;
+		background: rgb(240, 240, 240);
+	}
+	
+	body,dl,dd,form,p,ul,li,div {
+		
+		margin:0;
+		padding:0;
+	}
+
+	table {
+		
+		border-collapse:collapse;
+		border-spacing:0;
+	}
+	
+	a { 
+		text-decoration:none;
+		color:#4e5980;
+		cursor:pointer;
+	}
+	
+	a:hover {
+		
+		text-decoration:none;
+	}
+    
+    a:visited {
+        
+		color:#4e5980;
+    }
+	
+	li {
+		
+		list-style:none;
+	}
+	
+	fieldset, img {
+		
+		border: 0;
+	}
+	
+	body {
+
+		background-color: #FAFAFA;  
+		color: #2A2A2A;
+	}
+	
+	.white_background {
+			
+		background: white;
+	}
+    
+    .clearfix:after {
+		
+    	content:'';
+    	display:block;
+    	height:0;
+    	clear:both;
+		zoom:0.5;
+    }
+    	
+	.clearfix {		
+	
+        zoom:1;
+	}
+    
+	.main_content {
+	
+		width: auto;
+		height: auto;
+	}
+	
+	.main_content .content_inner {
+		
+		width: 90%;
+    	height: auto;
+    	border: solid 1px  #DCDCDC;
+    	float: auto;
+		margin-top: 20px;
+		margin-left: auto;
+		margin-right: auto;
+		background-color: #FFFFFF;
+		padding: 2px;
+	}	
+
+		.main_content .content_inner .content_title {
+			
+			background-color: #F8F8F8;
+			border: solid 1px  #DCDCDC;
+			text-align: left;
+			/*
+			height: 30px;
+			padding:14px 0 0 20px;
+			*/
+		}
+
+		.main_content .content_inner .content_title .content_title_icon {
+			
+			width: 32px;
+			height: 32px;
+			margin: 6px 10px 6px 16px;
+			vertical-align: middle;
+		}
+		
+		.main_content .content_inner .content_title a {
+			
+			display: block;
+			color:#444;
+			font-size:14px;
+			height: 30px;
+			padding:16px 0 0 40px;
+			text-shadow:#FFF 0 1px 0;
+			
+		}
+		
+		.main_content .content_inner .content_title a:hover {
+			
+            /*
+			color:#069;
+			background-color: #F4F4F4;
+             */
+            
+            color:#444;
+			text-shadow:#FFF 0 1px 0;
+		}
+    	
+    	.main_content .content_inner ul {
+
+				float: auto;
+				height: auto;
+            	margin: 12px 15px 10px 15px;
+    	}
+    	
+    	.main_content .content_inner li {
+			
+			background: #4285f4;
+			background: -webkit-linear-gradient(top,#4387fd,#4683ea);
+			border: solid 1px #4285f4;
+			border-radius:4px;
+			-moz-border-radius:4px;
+			-webkit-border-radius:4px;
+			float: left;
+			height: auto;
+			width: auto;
+			margin: 10px;
+			font-size: 12px;
+    	}
+
+	.li_link a {
+		
+		padding: 8px 12px;
+		display: block;
+		color: #FFFFFF;
+	}
+    
+    .li_link a:visited {
+        
+		color: #FFFFFF;
+    }
+    
+    .li_link a:hover{
+		
+		/*background: #3275e4;*/
+		color: #FFFFFF;
+	}
+	
+	.icon_cate_1 {
+		
+		background-image:url("images/ipad_edu_icon.png");
+		background-repeat:no-repeat;
+		background-position: 7px;
+		background-size: 25px 25px;
+	}
+	
+	.icon_cate_2 {
+		
+		background-image:url("images/ipad_doc_icon.png");
+		background-repeat:no-repeat;
+		background-position: 7px;
+		background-size: 25px 25px;
+	}
+	
+	.icon_cate_3 {
+		
+		background-image:url("images/ipad_life_icon.png");
+		background-repeat:no-repeat;
+		background-position: 7px;
+		background-size: 25px 25px;
+	}
+	
+	.icon_cate_4 {
+		
+		background-image:url("images/ipad_special.png");
+		background-repeat:no-repeat;
+		background-position: 7px;
+		background-size: 25px 25px;
+	}
+	
+	.icon_cate_5 {
+		
+		background-image:url("images/ipad_it_icon.png");
+		background-repeat:no-repeat;
+		background-position: 7px;
+		background-size: 25px 25px;
+	}
+	
+	.icon_cate_g {
+		
+		background-image:url("images/ipad_random_icon.png");
+		background-repeat:no-repeat;
+		background-position: 7px;
+		background-size: 25px 25px;
+	}
+	
+	@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
+		
+        
+        .icon_cate_1 {
+            
+            background-image:url("images/ipad_edu_icon@2x.png");
+            background-repeat:no-repeat;
+            background-position: 7px;
+            background-size: 25px 25px;
+        }
+        
+        .icon_cate_2 {
+            
+            background-image:url("images/ipad_doc_icon@2x.png");
+            background-repeat:no-repeat;
+            background-position: 7px;
+            background-size: 25px 25px;
+        }
+        
+        .icon_cate_3 {
+            
+            background-image:url("images/ipad_life_icon@2x.png");
+            background-repeat:no-repeat;
+            background-position: 7px;
+            background-size: 25px 25px;
+        }
+        
+        .icon_cate_4 {
+            
+            background-image:url("images/ipad_special@2x.png");
+            background-repeat:no-repeat;
+            background-position: 7px;
+            background-size: 25px 25px;
+        }
+        
+        .icon_cate_5 {
+            
+            background-image:url("images/ipad_it_icon@2x.png");
+            background-repeat:no-repeat;
+            background-position: 7px;
+            background-size: 25px 25px;
+        }
+        
+        .icon_cate_g {
+            
+            background-image:url("images/ipad_random_icon@2x.png");
+            background-repeat:no-repeat;
+            background-position: 7px;
+            background-size: 25px 25px;
+        }
+        
+	}
+	
+	#more_loading {
+            
+            width: auto;
+            margin: 4px;
+    		height: 50px;
+            padding-top: 30px;
+            text-align: center;
+            color: rgb(150, 150, 150);
+            text-shadow:rgba(255, 255, 255, 0.496094) 0 1px 0;
+            font-size: 16px;
+            /*border: solid 1px red;*/
+            margin: 0 auto;
+       }
+    
+    </style>
+
+   
+    
+</head>
+<body>
+<a href="#" id="empty_a" style="display:none"></a>
+
+
+
+    <div class="main_content clearfix">
+        <div class="content_inner clearfix">
+            <div class="content_title"><a href="javascript:recommend('随便看看');" class="icon_cate_g">随便看看</a></div>
+        </div>
+    </div>
+
+<div id="main_content_area">
+
+    <div class="main_content  clearfix">
+
+        <div class="content_inner clearfix">
+        
+            <div class="content_title"><a href="#" class="icon_cate_1"><span class="content_title_text">我的微盘</span></a></div>
+             <ul id="item1s" class="clearfix">
+                <li class="li_link"><a href="#">职场/办公</a></li>
+                <li class="li_link"><a href="#">生活娱乐</a></li>
+                <li class="li_link"><a href="#">专业资料</a></li>
+                <li class="li_link"><a href="#">IT/互联网</a></li>
+                <li class="li_link"><a href="#">高等教育</a></li>
+                <li class="li_link"><a href="#">考试资源</a></li>
+                <li class="li_link"><a href="#">学术研究</a></li>
+                <li class="li_link"><a href="#">表格/模版</a></li>
+                <li class="li_link"><a href="#">图片</a></li>
+                <li class="li_link"><a href="#">游戏</a></li>
+                <li class="li_link"><a href="#">工程技术</a></li>
+                <li class="li_link"><a href="#">农业养殖</a></li>
+            </ul> 
+            
+        </div>
+    </div>
+
+</div>
+
+<div class="clearfix height_5"></div>
+<div id="more_loading">正在加载...</div>
+    
+</body>
+</html>       

@@ -9,8 +9,11 @@
 
 #import "Scene4.h"
 
+//#define SCREEN [[CCDirector sharedDirector] viewSize]
+
 @implementation Scene4
 
+/*
 - (CCTableViewCell *)tableView:(CCTableView*)tableView nodeForRowAtIndex:(NSUInteger) index {
     
     CCTableViewCell* cell = [CCTableViewCell node];
@@ -31,15 +34,44 @@
 
 - (void)didLoadFromCCB {
     
+    CGSize tSize = CGSizeMake(SCREEN.width / 2, SCREEN.height * 0.7);
     CCTableView *table = [CCTableView node];
-    table.contentSizeType = CCSizeTypeNormalized;
-    table.contentSize = CGSizeMake(1.0, 1.0);
-    table.position = CGPointMake(20, -180);
+    table.contentSizeType = CCSizeTypePoints;
+    table.contentSize = tSize;//CGSizeMake(1.0, 1.0);
+    table.positionType = CCPositionTypePoints;
+    table.position = CGPointMake(20, 180);
     table.dataSource = self; // make our class the data source
     table.block = ^(CCTableView *table) {
         NSLog(@"Cell %d was pressed", (int) table.selectedRow);
     };
     [self addChild:table];
+}
+ */
+static UIWebView *wv;
+- (void)didLoadFromCCB {
+    
+    CGSize screenSize = [[CCDirector sharedDirector] viewSize];
+    int pequenoTamanho = screenSize.height - 330;
+    UIWebView *webview = [[UIWebView alloc] init];
+    webview.delegate = self;
+    [webview setFrame:CGRectMake(20, pequenoTamanho, 280, 310)];
+    //NSString *urlAddress = @"http://www.google.com";
+    
+    
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"html/cate.html" ofType:nil];
+    [webview loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:filePath] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20.0]];
+    
+    
+    //Create a URL object.
+    //NSURL *url = [NSURL URLWithString:urlAddress];
+    //URL Requst Object
+    //NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+    //Load the request in the UIWebView.
+    //[webview loadRequest:requestObj];
+    UIView *glView = [CCDirector sharedDirector].view;
+    [glView addSubview:webview];
+    [webview setHidden:YES];
+    wv = webview;
 }
 
 /*
@@ -49,7 +81,9 @@
     
     if (self) {
         
+        CGSize tSize = CGSizeMake(SCREEN.width / 2, SCREEN.height * 0.7);
         CCTableView *table = [CCTableView node];
+        [table setContentSize:tSize];
         table.dataSource = self; // make our class the data source
         table.block = ^(CCTableView *table) {
             NSLog(@"Cell %d was pressed", (int) table.selectedRow);
@@ -59,6 +93,7 @@
     return self;
 }
  */
+
 
 - (void)play {
     
@@ -81,7 +116,46 @@
 }
 
 - (void)selectServerName {
+    [wv setHidden:NO];
+    [wv reload];
+}
+
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     
+    //NSLog(@"%@", [request URL]);
+    
+    if ([[[request URL] scheme] isEqualToString:@"native"]) {
+        
+        NSString *path = [[[request URL] path] stringByReplacingOccurrencesOfString:@"/" withString:@""];
+        
+        NSString *query = [[request URL] query];
+        
+        NSMutableDictionary *parms = [NSMutableDictionary dictionary];
+        
+        for (NSString *item in [query componentsSeparatedByString:@"&"]) {
+            
+            NSArray *kv = [item componentsSeparatedByString:@"="];
+            NSString *result = [(NSString *)[kv objectAtIndex:1] stringByReplacingOccurrencesOfString:@"+" withString:@" "];
+            result = [result stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            [parms setValue:result forKey:[kv objectAtIndex:0]];
+        }
+        
+        
+        SEL action = NSSelectorFromString([path stringByAppendingString:@":"]);
+        
+        if ([self respondsToSelector:action]) {
+            
+            [self performSelector:action withObject:parms];
+            
+            //[self performSelectorOnMainThread:action withObject:parms waitUntilDone:YES];
+            
+            return NO;
+        }
+        
+    }
+    
+    return YES;
 }
 
 @end

@@ -8,6 +8,6 @@
 
 #import "CCNode.h"
 
-@interface Scene4 : CCNode <CCTableViewDataSource>
+@interface Scene4 : CCNode <UIWebViewDelegate> /*<CCTableViewDataSource>*/
 
 @end
