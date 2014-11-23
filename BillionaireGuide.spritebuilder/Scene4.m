@@ -103,7 +103,7 @@ static UIWebView *wv;
     [[CCDirector  sharedDirector] replaceScene:gameplayScene withTransition:[CCTransition transitionFadeWithDuration:.8f]];
 }
 
-- (void)regAndLogin {
+- (void)gotoLogin {
     
     //////////////////////////////////////////////////
     UIAlertView *dialog = [[UIAlertView alloc] init];
@@ -115,6 +115,7 @@ static UIWebView *wv;
     //////////////////////////////////////////////////
 }
 
+/*
 - (void)selectServerName {
     [wv setHidden:NO];
     [wv reload];
@@ -157,5 +158,6 @@ static UIWebView *wv;
     
     return YES;
 }
+ */
 
 @end

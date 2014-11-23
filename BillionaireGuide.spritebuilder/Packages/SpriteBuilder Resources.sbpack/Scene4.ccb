@@ -352,6 +352,14 @@
 				<array>
 					<dict>
 						<key>name</key>
+						<string>visible</string>
+						<key>type</key>
+						<string>Check</string>
+						<key>value</key>
+						<false/>
+					</dict>
+					<dict>
+						<key>name</key>
 						<string>name</string>
 						<key>type</key>
 						<string>StringSimple</string>
@@ -701,9 +709,9 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>159</real>
-							<real>162</real>
-							<integer>3</integer>
+							<real>161</real>
+							<real>118</real>
+							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -739,7 +747,7 @@
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string>regAndLogin</string>
+							<string>play</string>
 							<integer>1</integer>
 						</array>
 					</dict>
@@ -784,7 +792,7 @@
 						<string>String</string>
 						<key>value</key>
 						<array>
-							<string>注册 / 登录</string>
+							<string>我是新手</string>
 							<false/>
 						</array>
 					</dict>
@@ -1048,9 +1056,9 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>159</real>
-							<real>116</real>
-							<integer>3</integer>
+							<real>161</real>
+							<real>67</real>
+							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -1086,7 +1094,7 @@
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string>selectServerName</string>
+							<string>gotoLogin</string>
 							<integer>1</integer>
 						</array>
 					</dict>
@@ -1131,7 +1139,7 @@
 						<string>String</string>
 						<key>value</key>
 						<array>
-							<string>12区富甲天下</string>
+							<string>直接登录</string>
 							<false/>
 						</array>
 					</dict>
